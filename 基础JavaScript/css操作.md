@@ -43,6 +43,8 @@ _____________
 
 `offsetWidth` 和 `offsetHeight` 可以获取到可见高度 [内容区, 内边距, 边框] (+ padding + border), 不带单位(px..)  这些属性都是只读的
 
+`offsetTop` 为只读属性，它返回当前元素相对于其 offsetParent 元素的顶部的距离。
+
 ### 滚动条
 
 `scrollHeight` 和 `scrollWidth` 整个元素的高度和宽度
