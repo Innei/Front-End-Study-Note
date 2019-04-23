@@ -15,21 +15,29 @@
 			text-decoration: black;
 			text-decoration-line: underline;
 		}
-		#text{
+
+		#text {
 			position: absolute;
 			top: 100px;
 
 
 		}
 
+		footer>span {
+			position: absolute;
+			top: 90%;
+			left: 40%;
+		}
+
 	</style>
 
 	<script>
 		window.onload = function () {
+
 			var box1 = document.querySelector('#box1');
-			
+
 			box1.onwheel = function (e) {
-				
+
 				if (e.wheelDelta < 0) {
 					box1.style.height = box1.clientHeight + 10 + 'px';
 					box1.style.width = box1.clientWidth + 10 + 'px';
@@ -65,10 +73,10 @@
 			}
 			text.onkeydown = function (e) {
 				// 无法输入数字
-                if (e.keyCode <= 57 && e.keyCode >= 48)
-                    return false;
+				if (e.keyCode <= 57 && e.keyCode >= 48)
+					return false;
 			}
-			
+
 			document.onkeydown = function (e) {
 			    /*
 			        37 left
@@ -77,17 +85,38 @@
 			        40 down
 			     */
 
-                if (e.keyCode === 37)
-                    box1.style.left = box1.offsetLeft - 10 + 'px';
-                else if (e.keyCode === 38)
-                    box1.style.top = box1.offsetTop - 10 + 'px';
-                else if (e.keyCode === 39)
-                    box1.style.left = box1.offsetLeft + 10 + 'px';
-                else
-                    box1.style.top = box1.offsetTop + 10 + 'px';
-            return false;
+				if (e.keyCode === 37)
+					box1.style.left = box1.offsetLeft - 10 + 'px';
+				else if (e.keyCode === 38)
+					box1.style.top = box1.offsetTop - 10 + 'px';
+				else if (e.keyCode === 39)
+					box1.style.left = box1.offsetLeft + 10 + 'px';
+				else
+					box1.style.top = box1.offsetTop + 10 + 'px';
+				return false;
 			}
+			ua = window.navigator.userAgent;
+			if (/chrome/i) {
+				console.log('你是Chrome');
+			}
+			else if (/msie/i) {
+				console.log('你是IE,抓住你了');
+			}
+			else if ("ActiveXObject" in window) {
+				console.log('你是IE11,我要枪毙你');
+			}
+			//alert(location);
+			// 定时器
+			var time = document.querySelector('#time');
+			var num = 0;
+			var timer = setInterval(function(){
+				time.innerHTML = num++;
+				if (num == 11) {
+					clearInterval(timer);
+				}
+			},100);
 
+			
 		};
 
 	</script>
@@ -96,7 +125,8 @@
 <body>
 	<div id="box1"></div>
 	<span id="key"></span>
-	<input type="text" id="text"/>
+	<input type="text" id="text" />
+	<footer><span id = 'time'></span></footer>
 </body>
 
 </html>
