@@ -18,7 +18,7 @@ box.style.width = '200px';
 获取当前元素的**当前正在显示**的样式, 如果样式不存在则获取默认参数 (仅IE支持)
     语法: `元素.currentStyle.样式名`
 
-其他浏览器使用 `getComputedStyle()` 这个方法是window的方法,可以直接使用
+其他浏览器使用 `getComputedStyle()` 这个方法是window的方法, 可以直接使用
 
 参数:   
 - 第一个: 要获取的元素

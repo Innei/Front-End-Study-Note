@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="tools.js"></script>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+
+		}
+
+		#container {
+			margin: 50px auto;
+			background-color: skyblue;
+			width: 500px;
+			height: 500px;
+			padding: 10px 0;
+			position: relative;
+			overflow: hidden;
+
+		}
+
+		ul {
+			list-style: none;
+			width: 0px;
+			position: absolute;
+			transition: all 1s;
+
+		}
+
+		ul>li {
+			float: left;
+			margin-left: 10px;
+			transition: all 1s;
+
+		}
+
+		#navDiv {
+			position: absolute;
+			bottom: 20px;
+			left: 0px;
+
+		}
+
+		#navDiv>a {
+			float: left;
+			width: 10px;
+			width: 10px;
+			margin-left: 5px;
+			background-color: red;
+			opacity: 0.5;
+		}
+
+		#navDiv>a:hover {
+			background-color: skyblue;
+			opacity: 0.5;
+			transition: all 0.5s;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<!-- 创建一个外部的div,作为大容器-->
+	<div id="container">
+		<ul id="list">
+			<li if="ele">
+				<img />
+			</li>
+		</ul>
+		<div id="navDiv"><a href="javascript:;"></a></div>
+	</div>
+	<script>
+		window.onload = function () {
+			var imgList = document.querySelector('#list');
+
+			// 获取img标签
+			var imgArr = document.querySelectorAll('img');
+
+			imgList.style.width = imgArr.length * 520 + 'px';
+
+			var container = document.querySelectorAll('#container');
+			var navDiv = document.querySelectorAll('navDiv');
+			// 居中计算公式
+			navDiv.style.left = (container.offsetWidth - navDiv.offsetWidth) / 2 + 'px';
+
+			var aAll = document.querySelectorAll('a');
+			// 设置默认选中的效果
+			var index = 0;
+
+			aAll[index].style.backgroundColor = 'skyblue';
+
+			// 点击超链接 切换指定图片
+			var timer;
+			for (var i = 0; i < aAll.length; i++) {
+
+				// 为每一个超链接都添加一个id
+				aAll[i].num = i;
+
+				aAll[i].onclick = function () {
+					// 需要知道第几个超链接
+					console.log(this.num);
+
+					index = this.num;
+
+					imgList.style.left = index * -520 + 'px';
+
+					// 修改正在选中的a
+					setA();
+					
+					// 关闭自动关闭切换
+
+					clearInterval(timer);
+
+					move(imgList, "left", -520 * index, 20, function () {
+						autoChange();
+					});
+ 
+				};
+			}
+
+			// 修改正在选中的a
+			function setA() {
+				// 重置颜色
+				for (var i = 0; i < aAll.length; i++) {
+					aAll[i].style.backgroundColor = "";
+
+				}
+				aAll[index].style.backgroundColor = 'skyblue';
+			};
+			autoChange();
+			// 定时切换 
+			function autoChange() {
+				timer = setInterval(function () {
+					index++;
+					index %= imgArr.length;
+					move(imgList, "left", -520 * index, 20, function () { 
+						setA(); });
+
+				}, 3000);
+			};
+		};   
+	</script>
+</body>
+
+</html>
