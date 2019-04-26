@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 绘图</title>
+
+    <style>
+        body,
+        html,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            display: inline-block;
+        }
+        .option-ico {
+            height: 2px;
+            width: 30px;
+            position: absolute;
+            padding: 10px 0 10px 0;
+            background: currentColor;
+            color: black;
+            border-top: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            background-clip: content-box;
+        }
+
+        .circle-ico {
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background-color: black;
+            background-clip: content-box;
+            padding: 5px;
+            border: 2px solid;
+            position: absolute;
+            display: inline-block;
+            left: 50px;
+            box-sizing: border-box;
+            transition: all .5s;
+        }
+
+        .circle-ico:active {
+            padding: 0px;
+            transform: scale(0.8);
+            transition: all .1s;
+        }
+
+        .down-arrow {
+            left: 100px;
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 30px;
+            margin-right: 20px;
+        }
+
+        .down-arrow::after {
+            display: inline-block;
+            content: " ";
+            height: 18px;
+            width: 18px;
+            border-width: 0 2px 2px 0;
+            border-color: #000;
+            border-style: solid;
+            transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+            transform-origin: center;
+            transition: transform .3s;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            margin-top: -10px;
+        }
+
+      
+        .down-arrow:active::after {
+            transform-origin: center;
+            transform: rotate(-135deg);
+            transition: transform .3s;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class='option-ico'></div>
+    <div class="circle-ico"></div>
+    <div class="down-arrow" ></div>
+</body>
+
+</html>
