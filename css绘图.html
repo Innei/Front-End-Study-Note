@@ -14,12 +14,20 @@
             margin: 0;
             padding: 0;
         }
+
         div {
             display: inline-block;
         }
+
+        body {
+            position: relative;
+            top: 10em;
+            left: 10em;
+        }
+
         .option-ico {
             height: 2px;
-            width: 30px;
+            width: 26px;
             position: absolute;
             padding: 10px 0 10px 0;
             background: currentColor;
@@ -27,6 +35,18 @@
             border-top: 2px solid currentColor;
             border-bottom: 2px solid currentColor;
             background-clip: content-box;
+            transition: all .5s;
+        }
+
+        .option-ico:active {
+            border-left: 0px;
+            border-top: 0px;
+            border-bottom: 2px currentColor solid;
+            transform: rotate(45deg);
+            background-color: transparent;
+            border-right: 2px solid currentColor;
+
+
         }
 
         .circle-ico {
@@ -76,11 +96,53 @@
             margin-top: -10px;
         }
 
-      
+
         .down-arrow:active::after {
             transform-origin: center;
             transform: rotate(-135deg);
             transition: transform .3s;
+        }
+
+        .more-ico {
+            position: absolute;
+            display: inline-block;
+            left: 13em;
+            color: black;
+            height: 15px;
+            width: 15px;
+            border-bottom: 2px solid currentColor;
+            transform: translateY(5px);
+            box-sizing: border-box;
+            transition: all .5s;
+        }
+
+        .more-ico::before {
+            content: '';
+            border-left: 2px solid currentColor;
+            height: 15px;
+            transform: translate(7px, 7px);
+            position: absolute;
+            transition: all .5s;
+        }
+
+        .more-ico:active {
+            transform: rotate(180deg) translateY(-17px);
+
+
+        }
+
+        .more-ico:active:before {
+            border-left: 0px transparent;
+
+        }
+
+        .more-ico::after {
+            content: '';
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            border: 2px #000 soild ;
+            border-radius: 100%;
         }
 
     </style>
@@ -89,7 +151,8 @@
 <body>
     <div class='option-ico'></div>
     <div class="circle-ico"></div>
-    <div class="down-arrow" ></div>
+    <div class="down-arrow"></div>
+    <div class="more-ico"></div>
 </body>
 
 </html>
