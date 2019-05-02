@@ -207,3 +207,67 @@
 - 定时器回调函数 ===>window
 - ajax请求回调函数(后面讲)
 - 生命周期回调函数(后面讲)
+
+## 立即调用函数
+
+  * 隐藏实现
+  * 不会污染外部(全局)命名空间
+  * 用它来编码js模块
+  
+```js
+(function () { //匿名函数自调用
+    var a = 3;
+    console.log(a + 3);
+  })();
+```
+
+## this 是什么
+
+1. this是什么?
+
+  * 任何函数本质上都是通过某个对象来调用的,如果没有直接指定就是window
+  * 所有函数内部都有一个变量this
+  * 它的值是调用函数的当前对象
+  
+2. 如何确定this的值?
+
+  * test(): window
+  * p.test(): p
+  * new test(): 新创建的对象
+  * p.call(obj): obj
+  
+```js
+  function Person(color) {
+    console.log(this)
+    this.color = color;
+    this.getColor = function () {
+      console.log(this)
+      return this.color;
+    };
+    this.setColor = function (color) {
+      console.log(this)
+      this.color = color;
+    };
+  }
+
+  Person("red"); //this是谁? window
+
+  var p = new Person("yello"); //this是谁? p
+
+  p.getColor(); //this是谁? p
+
+  var obj = {};
+  p.setColor.call(obj, "black"); //this是谁? obj
+
+  var test = p.setColor;
+  test(); //this是谁? window
+
+  function fun1() {
+    function fun2() {
+      console.log(this);
+    }
+
+    fun2(); //this是谁? window
+  }
+  
+```

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>margin 合并</title>
+    <style>
+        div {
+            height:  30px;
+            width: 30px;
+        }
+        #one {
+            margin-bottom: 10px;
+            background-color: aquamarine;
+        }
+        #two {
+            margin-top: 50px;
+            background-color: #99ff99;
+        }
+        #self {
+            margin-bottom: 20px;
+            margin-top: 50px;
+            background-color: skyblue;
+        }
+        .col {
+            width: 1000px;
+            border-top: #006666 1px solid;
+        }
+    </style>
+</head>
+<body>
+<!-- 兄弟元素合并 -->
+<div id="one"></div>
+<div id="two"></div>
+
+<div class="col"></div>
+<!--自己合并-->
+<div id="self"></div>
+
+</body>
+</html>
