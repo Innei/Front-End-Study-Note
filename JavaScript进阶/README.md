@@ -271,3 +271,41 @@
   }
   
 ```
+
+## 原型
+
+1. 函数的prototype属性(图)
+  * 每个函数都有一个prototype属性, 它默认指向一个Object空对象(即称为: 原型对象)
+  * 原型对象中有一个属性constructor, 它指向函数对象
+2. 给原型对象添加属性(一般都是方法)
+  * 作用: 函数的所有实例对象自动拥有原型中的属性(方法)
+  
+```js
+  // 每个函数都有一个prototype属性, 它默认指向一个Object空对象(即称为: 原型对象)
+  console.log(Date.prototype, typeof Date.prototype)
+  function Fun () {//alt + shift +r(重命名rename)
+
+  }
+  console.log(Fun.prototype)  // 默认指向一个Object空对象(没有我们的属性)
+
+  // 原型对象中有一个属性constructor, 它指向函数对象
+  console.log(Date.prototype.constructor===Date)
+  console.log(Fun.prototype.constructor===Fun)
+
+  //给原型对象添加属性(一般是方法) ===>实例对象可以访问
+  Fun.prototype.test = function () {
+    console.log('test()')
+  }
+  var fun = new Fun()
+
+  fun.test()
+```
+
+1. 每个函数function都有一个prototype，即显式原型
+2. 每个实例对象都有一个__proto__，可称为隐式原型
+3. 对象的隐式原型的值为其对应构造函数的显式原型的值
+4. 内存结构(图)
+5. 总结:
+  * 函数的prototype属性: 在定义函数时自动添加的, 默认值是一个空Object对象
+  * 对象的__proto__属性: 创建对象时自动添加的, 默认值为构造函数的prototype属性值
+  * 程序员能直接操作显式原型, 但不能直接操作隐式原型(ES6之前)
