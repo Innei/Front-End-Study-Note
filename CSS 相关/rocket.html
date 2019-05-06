@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rocket</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .wrap {
+            height: 300vh;
+            width: 100vw;
+            background: linear-gradient(135deg, #3498db, #95a5a6, #27ae60);
+        }
+
+        .wrap p {
+            height: 100vh;
+            line-height: 100vh;
+            text-align: center;
+            font-size: 100px;
+
+        }
+
+        #rocket {
+            background-image: url('rocket.png');
+            width: 50px;
+            height: 100px;
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            background-position: top;
+            background-size: cover;
+            display: none;
+        }
+
+        #rocket:hover {
+            background-position: bottom;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <p>I</p>
+        <p>am</p>
+        <p>content</p>
+    </div>
+    <div id="rocket"></div>
+</body>
+<script src="../jQuery/jQuery-3.4.0.js"></script>
+<script>
+    window.onload = () => {
+        $(window).scroll(function(){
+            if ($(window).scrollTop() < 100) {
+                $('#rocket').slideUp(500);
+            }
+            else
+                $('#rocket').slideDown(500);
+        });
+
+        document.querySelector('#rocket').onclick = function() {
+            $(this).animate({
+                bottom: '100%'
+            }, 1000);
+            $('html,body').animate(
+                {
+                    scrollTop: '0px'
+                }
+                , 1000);
+                setTimeout(() => {
+                    $('#rocket').removeAttr('style');
+                }, 1200);
+        }
+    }
+</script>
+
+</html>
