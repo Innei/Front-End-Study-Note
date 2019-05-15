@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+    body{
+        margin: 0;padding: 0;
+    }
+    .loading {
+        width: 100%;
+        height: 100vh;
+        background: #6a89cc;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+    }
+    .loading::before{
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: #f8c291;
+        left: 20%;
+        transform: translateX(-50%) rotate(0);
+        border-radius: 20px;
+        animation: loading 4s infinite linear;
+    }
+    @keyframes loading {
+        from {
+            transform: translateX(-50%) rotate(0deg);
+        }
+        50% {
+            left: 80%;
+        }
+        to {
+            transform: translateX(-50%) rotate(1440deg);
+        }
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <div class="loading"></div>
+</body>
+</html>
