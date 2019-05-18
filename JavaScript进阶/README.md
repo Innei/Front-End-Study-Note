@@ -449,3 +449,117 @@
 全局变量释放
 函数绑定变量,用完及时释放 `a = null`
 定时器及时取消
+
+## 继承
+
+方式1: 原型链继承
+  1. 套路
+    1. 定义父类型构造函数
+    2. 给父类型的原型添加方法
+    3. 定义子类型的构造函数
+    4. 创建父类型的对象赋值给子类型的原型
+    5. 将子类型原型的构造属性设置为子类型
+    6. 给子类型原型添加方法
+    7. 创建子类型的对象: 可以调用父类型的方法
+  2. 关键
+    1. 子类型的原型为父类型的一个实例对象
+    
+  ```js
+  //父类型
+  function Supper() {
+    this.supProp = 'Supper property'
+  }
+  Supper.prototype.showSupperProp = function () {
+    console.log(this.supProp)
+  }
+
+  //子类型
+  function Sub() {
+    this.subProp = 'Sub property'
+  }
+
+  // 子类型的原型为父类型的一个实例对象
+  Sub.prototype = new Supper()
+  // 让子类型的原型的constructor指向子类型
+  Sub.prototype.constructor = Sub
+  Sub.prototype.showSubProp = function () {
+    console.log(this.subProp)
+  }
+
+  var sub = new Sub()
+  sub.showSupperProp()
+  // sub.toString()
+  sub.showSubProp()
+
+  console.log(sub)  // Sub
+
+```
+
+方式2: 借用构造函数继承(假的)
+1. 套路:
+  1. 定义父类型构造函数
+  2. 定义子类型构造函数
+  3. 在子类型构造函数中调用父类型构造
+2. 关键:
+  1. 在子类型构造函数中通用call()调用父类型构造函数
+  
+```js
+ function Person(name, age) {
+    this.name = name
+    this.age = age
+  }
+  function Student(name, age, price) {
+    Person.call(this, name, age)  // 相当于: this.Person(name, age)
+    /*this.name = name
+    this.age = age*/
+    this.price = price
+  }
+
+  var s = new Student('Tom', 20, 14000)
+  console.log(s.name, s.age, s.price)
+```
+
+
+方式3: 原型链+借用构造函数的组合继承
+1. 利用原型链实现对父类型对象的方法继承
+2. 利用super()借用父类型构建函数初始化相同属性
+
+```js
+function Person(name, age) {
+    this.name = name
+    this.age = age
+  }
+  Person.prototype.setName = function (name) {
+    this.name = name
+  }
+
+  function Student(name, age, price) {
+    Person.call(this, name, age)  // 为了得到属性
+    this.price = price
+  }
+  Student.prototype = new Person() // 为了能看到父类型的方法
+  Student.prototype.constructor = Student //修正constructor属性
+  Student.prototype.setPrice = function (price) {
+    this.price = price
+  }
+
+  var s = new Student('Tom', 24, 15000)
+  s.setName('Bob')
+  s.setPrice(16000)
+  console.log(s.name, s.age, s.price)
+
+```
+
+## 多线程
+
+为什么要多线程: 因为JavaScript是单线程执行的, 效率低.
+
+1. H5规范提供了js分线程的实现, 取名为: Web Workers
+2. 相关API
+  * Worker: 构造函数, 加载分线程执行的js文件
+  * Worker.prototype.onmessage: 用于接收另一个线程的回调函数
+  * Worker.prototype.postMessage: 向另一个线程发送消息
+3. 不足
+  * worker内代码不能操作DOM(更新UI)
+  * 不能跨域加载JS
+  * 不是每个浏览器都支持这个新特性
