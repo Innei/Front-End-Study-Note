@@ -113,3 +113,19 @@ $.each(obj,function(index, value) {
     console.log(index,value);
 })
 ```
+
+### 使用 map 遍历伪数组 
+
+```js
+let obj = {
+    0:1,
+    1:2,
+    2:3,
+}
+$.map(obj,function(value, index) {
+    console.log(index,value);
+    return index;
+})
+```
+与each不同是返回值能不能指定
+
