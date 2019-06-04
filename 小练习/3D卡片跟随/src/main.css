@@ -1,0 +1,40 @@
+body{
+    margin: 0;padding: 0;
+}
+
+.container {
+    height: 100vh;
+    position: relative;
+}
+
+.model {
+    position: absolute;
+    width: 40%;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+.content {
+    position: absolute;
+    width: 60%;
+    left: 40%;
+    height: 100vh;
+    background-color: aqua;
+}
+.card {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .7);
+    transform: rotateX(10deg) rotateY(10deg);
+    /*transition: transform .5s ;*/
+}
+
+/*
+    右上凹进 X + Y -   z (-5,+5)
+    右下 + +   - -
+    左上  + -
+    左下 - +
+*/
