@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./src/main.css">
+    <link rel="stylesheet" href="./lib/css/live2d.css">
 </head>
 
 <body>
@@ -14,13 +15,57 @@
         <div class="model"></div>
         <div class="content">
             <section class="card">
-                <div class="img"></div>
-                <div class="message"></div>
-            </section>
+                <h1 class="margin">おがえり、しゅじん</h1>
+                <div class="img">
+                    <img src="https://static.event.mihoyo.com/bh3_homepage/images/pic/picture/36.jpg" >
+                    
+                </div>
+                <div class="message margin">
+                    <p>远方的朋友,欢迎你~~~</p>
 
+                </div>
+                <div class="icons margin" style="margin-top: 1em;">
+                    <a href="https://www.shizuri.net">
+                        <li>Home</li>
+                    </a>
+                    <a href="https://i.shizuri.net">
+                        <li>About</li>
+                    </a>
+                    <a href="https://github.com/innei">
+                        <li>GitHub</li>
+                    </a>
+                    <a href="https://shizuri.net">
+                        <li>Blog</li>
+                    </a>
+                </div>
+            </section>
         </div>
+
+        <div class="conversion">
+            <h1 class="margin">看板娘</h1>
+            <p class="margin"></p>
+        </div>
+
+        <div id="landlord" style="opacity: 0">
+            <div class="pio-message" style="opacity:0"></div>
+            <canvas id="live2d" width="280" height="500" class="live2d"></canvas>
+            <div class="hide-button">隐藏</div>
+        </div>
+
     </div>
-    <footer></footer>
+    <footer><span>2019 &copy; yiny.</span></footer>
 </body>
 <script src="src/index.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="./lib/js/live2d.js"></script>
+<script>
+
+    var message_Path = './lib/'
+    var home_Path = 'https://shizuri.net/'  //此处修改为你的域名，必须带斜杠
+
+    loadlive2d("live2d", "./lib/model/mei/model.json");
+    
+</script>
+<script src="./lib/js/message.js"></script>
+
 </html>

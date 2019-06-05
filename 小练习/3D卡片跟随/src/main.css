@@ -1,17 +1,40 @@
-body{
-    margin: 0;padding: 0;
+body {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(../33.jpg) bottom/cover no-repeat;
+    margin: -120px;
+    filter: blur(10px);
+    z-index: -1000;
+    transition: filter .5s;
+}
+
+.noblur::before {
+    content: '';
+    filter: blur(0);
 }
 
 .container {
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
 .model {
     position: absolute;
     width: 40%;
     height: 100vh;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
 }
 
 .content {
@@ -19,22 +42,107 @@ body{
     width: 60%;
     left: 40%;
     height: 100vh;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
+
 .card {
     height: 500px;
     width: 500px;
     position: absolute;
-    top: 0;left: 0;right: 0;bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     margin: auto;
-    background-color: rgba(0, 0, 0, .7);
-    transform: rotateX(10deg) rotateY(10deg);
-    /*transition: transform .5s ;*/
+    transform: rotateX(5deg) rotateY(-30deg);
+    transition: transform .1s;
+    box-sizing: border-box;
 }
 
-/*
-    右上凹进 X + Y -   z (-5,+5)
-    右下 + +   - -
-    左上  + -
-    左下 - +
-*/
+.card::before {
+    content: '';
+    background-color: rgba(0, 0, 0, .7);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+img {
+    display: inline-block;
+    width: 100%;
+}
+
+.margin {
+    margin-left: 2em;
+}
+
+
+.img {
+    display: block;
+    height: 250px;
+    transform: scale(1.02);
+    box-shadow: .5px 0 0 1px 1px #000;
+    overflow: hidden;
+}
+
+.card .message {
+    margin-top: 3em;
+}
+
+li {
+    list-style: none;
+    display: inline-block;
+    background-color: rgba(53, 50, 50, 0.7);
+    padding: .5em;
+    margin-right: 1em;
+    transition: background .5s;
+}
+
+li:hover {
+    background-color: #3498db;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+.conversion {
+    position: fixed;
+    bottom: 1em;
+    left: 4em;
+    right: 4em;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0.5px 0 22px 1px rgba(0, 0, 0, 0.527);
+    color: #000;
+    transition: all .5s;
+    z-index: 100;
+    min-height: 10em;
+}
+
+.conversion span:nth-last-child(1) {
+    animation: fade-in .5s ease both;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.message {
+    min-height: 3em;
+}
+footer {
+    position: fixed;
+    bottom:1em;
+    text-align: center;
+    left: 0;right: 0;
+    color: #3498db;
+}
