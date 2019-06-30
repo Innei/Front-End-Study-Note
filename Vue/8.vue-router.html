@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <router-link to="/">
+        首页
+      </router-link>
+      <router-link to="/about">
+        关于
+      </router-link>
+      <router-link to="/user/王花花"> 王花花 </router-link
+      ><router-link to="/user/李">
+        李
+      </router-link>
+      <button @click="name"></button>
+      <router-view> </router-view>
+    </div>
+  </body>
+  <script src="./lib/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script>
+    const routes = [
+      {
+        path: "/about",
+        component: {
+          template: `<div>xiaocaiji </div>`
+        }
+      },
+      {
+        path: "/",
+        component: {
+          template: ``
+        }
+      },
+      {
+        path: "/user/:name",
+        name: "user",
+        component: {
+          template: `
+          <div>
+          <div>I'm: {{$route.params.name}}, age is {{$route.query.age}} </div>
+          <router-link to="more" append> xx</router-link>
+          <router-view> </router-view>
+          </div>`
+        },
+        children: [
+          // 子路由需要包含在同一个父元素
+          {
+            path: "more",
+            component: {
+              template: `
+                    <div>子路由</div>`
+            }
+          }
+        ]
+      }
+    ];
+    const router = new VueRouter({
+      routes
+    });
+    const app = new Vue({
+      router,
+      methods: {
+        name() {
+          this._router.push({ name: "user", params: { name: "王花花" } });
+        }
+      }
+    }).$mount("#app");
+  </script>
+</html>
